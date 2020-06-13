@@ -34,12 +34,17 @@ cd ./backend
 activate ./venv
 python server.py
 ```
+
 ### Access the UI
 
 #### From the same computer as the one running the server
 In this case, you can access it from *http://localhost:5000* or *http://127.0.0.1:5000*
 #### From another device connected to the same network
 In this other case, you can access it by entering the IP of the computer running the server such as *http://192.168.0.XX:5000/*
+
+#### Shortcut
+
+In the repository `start_server.bat` is a simple way to start it, just make a shortcut somewhere and execute it when you want to start playing. It will open a new tab with the page and run the server.
 
 ## Adjust parameters
 

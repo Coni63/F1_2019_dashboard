@@ -51,4 +51,5 @@ Thumbs.db
 **/venv/**
 
 *.bat
+!start_server.bat
 *.sqlite3

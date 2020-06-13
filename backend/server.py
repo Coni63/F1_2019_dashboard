@@ -69,8 +69,6 @@ if __name__ == '__main__':
     config = configparser.ConfigParser(allow_no_value=True)
     config.read('config.ini')
 
-    print(config["server"]["debug"])
-
     udp_listener = Listener(
         host=config["UDP"]["host"], 
         port=int(config["UDP"]["port"]), 
