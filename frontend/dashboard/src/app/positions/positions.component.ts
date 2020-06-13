@@ -23,14 +23,13 @@ export class PositionsComponent implements OnInit {
   constructor() {
     this.socket = io.connect(environment.call_url);
 
-    const source = interval(1000);
+    const source = interval(environment.refresh_rate_pilots_ms);
     this.subscription = source.subscribe(val => this.socket.emit("give_status"));
   }
 
   ngOnInit() {
     this.socket.on('status', (msg: any) => {
       this.status = msg.length == 0 ? null : msg;
-      console.log(msg);
       //console.log(this.status);
       //this.subscription.unsubscribe();
     });

@@ -1,3 +1,5 @@
+import configparser
+
 from flask import Flask, send_from_directory
 from flask_socketio import SocketIO, send, emit
 
@@ -64,8 +66,22 @@ if __name__ == '__main__':
     Run the Listener to parse UDP in a Thread
     Run the Flask website using socketio in a separated Thread
     """
-    udp_listener = Listener()
+    config = configparser.ConfigParser(allow_no_value=True)
+    config.read('config.ini')
+
+    print(config["server"]["debug"])
+
+    udp_listener = Listener(
+        host=config["UDP"]["host"], 
+        port=int(config["UDP"]["port"]), 
+        my_name=config["UDP"]["my_name"]
+    )
     udp_listener.start()
 
-    socketio.run(app, debug=False, use_reloader=False, host='0.0.0.0', port=5000)
+    socketio.run(app, 
+        debug=bool(int(config["server"]["debug"])), 
+        use_reloader=bool(int(config["server"]["use_reloader"])), 
+        host=config["server"]["host"], 
+        port=int(config["server"]["port"])
+    )
 

@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  call_url: 'http://localhost:5000'
+  call_url: 'http://localhost:5000',
+  refresh_rate_pilots_ms: 1000,
+  refresh_rate_track_ms: 1000
 };
 
 /*

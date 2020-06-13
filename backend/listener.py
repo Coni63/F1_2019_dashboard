@@ -6,11 +6,12 @@ from f1_2019_telemetry.packets import *
 from pilot import Pilot
 
 class Listener(Thread):
-    def __init__(self, host : str = "", port: int = 20777):
+    def __init__(self, host : str, port: int, my_name: str=""):
         super(Listener, self).__init__()
+
         # setup socket
         self.udp_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-        self.udp_socket.bind((self.host, self.port))
+        self.udp_socket.bind((host, port))
 
         self.status = None                     # store the status of the car 0 = in garage, 1 = flying lap, 2 = in lap, 3 = out lap, 4 = on track
         self.totalLaps = None                  # number of lap of the race
@@ -39,7 +40,7 @@ class Listener(Thread):
         
         # update the dictionnary of <ID: name> to add missing ones
         self.DriverIDs = DriverIDs
-        self.DriverIDs[100] = "Me"
+        self.DriverIDs[100] = my_name
         self.DriverIDs[72] = "Devon Butler"
         self.DriverIDs[73] = "Lukas Weber"
 

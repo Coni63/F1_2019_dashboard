@@ -21,7 +21,7 @@ export class RaceInfoComponent implements OnInit {
   constructor() {
     this.socket = io.connect(environment.call_url);
 
-    const source = interval(1000);
+    const source = interval(environment.refresh_rate_track_ms);
     this.subscription = source.subscribe(val => this.socket.emit("give_track"));
   }
 
