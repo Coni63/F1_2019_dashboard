@@ -104,7 +104,7 @@ class Listener(Thread):
             if 0 < pilot.fastest_lap < fastest_time:
                 fastest_pilot = pilot
                 fastest_time = pilot.fastest_lap
-                pilot.is_fastest = False  # set all to false
+            pilot.is_fastest = False  # set all to false
 
         if fastest_pilot is not None:
-            fastest_pilot.is_fastest = True  # set the fastest one to True
+            fastest_pilot.is_fastest = True  # set only the fastest one to True
