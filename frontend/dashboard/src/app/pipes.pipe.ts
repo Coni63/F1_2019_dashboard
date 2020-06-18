@@ -18,7 +18,7 @@ export class LapTimePipe implements PipeTransform {
     let min : number = Math.floor(value/60);
     let ms : number = Math.floor(1000*(value % 1));
 
-    return min.toString() + ":" + s.toString() + "." + ms.toString();
+    return min.toString() + ":" + s.toString().padStart(2, "0") + "." + ms.toString().padStart(3, "0");
   }
 }
 
@@ -32,6 +32,8 @@ export class TimeFormatPipe implements PipeTransform {
     let s : number = Math.floor(value) % 60;
     let min : number = Math.floor(value/60);
 
-    return min.toString() + " min " + s.toString() + " s";
+    
+
+    return min.toString() + " min " + s.toString().padStart(2, "0") + " s";
   }
 }
