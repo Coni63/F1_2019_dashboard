@@ -11,6 +11,7 @@ class Pilot():
         self.is_fastest = False
         self.is_bot = True
         self.wear = 0
+        self.gridPosition = 0
 
     def to_json(self):
         return {
@@ -24,5 +25,6 @@ class Pilot():
             "status" : self.status,
             "is_fastest" : self.is_fastest,
             "is_bot" : self.is_bot,
-            "wear" : self.wear
+            "wear" : self.wear,
+            "gridPosition" : self.gridPosition
         }

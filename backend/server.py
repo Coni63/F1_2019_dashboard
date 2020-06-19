@@ -35,7 +35,8 @@ def send_status():
         "status" : 2,
         "is_fastest" : true,
         "is_bot" : true,
-        "wear" : 3.25
+        "wear" : 3.25,
+        "gridPosition" : 2
     }
     """
     if udp_listener.status is None:
@@ -56,7 +57,8 @@ def send_track():
         "weather" : "wi-day-sunny",
         "trackTemperature" : "29",
         "airTemperature" : "21",
-        "sessionDuration" : 127
+        "sessionDuration" : 127,
+        "sessionType" : 10
     }
     """
     emit('track', udp_listener.race_info)
