@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    <table class="table middle" *ngIf="status">
+    <table class="table table-sm middle" *ngIf="status">
         <thead>
             <tr class="center">
                 <th scope="col">Position</th>
@@ -26,12 +26,12 @@
                         </svg>
                     </span>
                 </td>
-                <td class="{{ pilot.team | formatClass }}"></td>
+                <td class="team-color {{ pilot.team | formatClass }}"></td>
                 <td class="left">{{ pilot.team }}</td>
-                <td class="padded center">{{ pilot.name }}</td>
+                <td class="center">{{ pilot.name }}</td>
                 <td class="left"><img *ngIf="pilot.is_fastest" id="fastest_lap" src="assets/img/fastest_lap.png"/></td>
                 <td [ngClass]="pilot.fastest_lap > 0 ? 'left' : 'center'">{{ pilot.fastest_lap | LapTime }}</td>
-                <td class="padded center">{{ pilot.lap }} / {{ pilot.total_lap }}</td>
+                <td class="center">{{ pilot.lap }} / {{ pilot.total_lap }}</td>
                 <td><img class="tyre_img" src="assets/img/{{ pilot.tyre }}.png"/></td>
                 <td>{{ pilot.wear }}%</td>
             </tr>
