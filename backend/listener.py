@@ -21,7 +21,7 @@ class Listener(Thread):
             "trackTemperature" : "",
             "airTemperature" : "",
             "sessionDuration" : 0,
-            "sessionType" : 0
+            "sessionType" : ""
         }
         self.tyresID = {                       # mapping tyreID to image name
             16 : "soft", 
@@ -96,7 +96,10 @@ class Listener(Thread):
                     self.status[i].position = lap.carPosition  # starts at 0
                     self.status[i].fastest_lap = lap.bestLapTime
                     self.status[i].status = lap.resultStatus
-                    self.status[i].gridPosition = lap.gridPosition + 1 # starts at 1
+                    if self.race_info["sessionType"] == "Race":
+                        self.status[i].gridPosition = lap.gridPosition + 1 # starts at 1
+                    else:
+                        self.status[i].gridPosition = -1
             if isinstance(packet, PacketParticipantsData_V1):
                 for i, participant in enumerate(packet.participants):
                     self.status[i].name = self.DriverIDs[participant.driverId]
