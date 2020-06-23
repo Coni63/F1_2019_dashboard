@@ -43,6 +43,8 @@ def send_status():
         emit('status', [])
     else:
         sorted_pilot = sorted(udp_listener.status, key=lambda x:x.position)
+        # for idx, pilot in enumerate(sorted_pilot):  # just to check tyre color
+        #     pilot.wear = 5*idx
         data = [pilot.to_json() for pilot in sorted_pilot]
         emit('status', data)
 

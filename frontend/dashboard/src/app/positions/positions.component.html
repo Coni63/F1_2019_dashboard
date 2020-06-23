@@ -33,7 +33,7 @@
                 <td [ngClass]="pilot.fastest_lap > 0 ? 'left' : 'center'">{{ pilot.fastest_lap | LapTime }}</td>
                 <td class="center">{{ pilot.lap }} / {{ pilot.total_lap }}</td>
                 <td><img class="tyre_img" src="assets/img/{{ pilot.tyre }}.png"/></td>
-                <td>{{ pilot.wear }}%</td>
+                <td class="center" [ngStyle]="{ 'color': setColor(pilot.wear) }">{{ pilot.wear }}%</td>
             </tr>
         </tbody>
     

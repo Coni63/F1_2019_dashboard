@@ -32,8 +32,6 @@ export class TimeFormatPipe implements PipeTransform {
     let s : number = Math.floor(value) % 60;
     let min : number = Math.floor(value/60);
 
-    
-
     return min.toString() + " min " + s.toString().padStart(2, "0") + " s";
   }
 }
