@@ -20,7 +20,8 @@ class Listener(Thread):
             "weather" : "",
             "trackTemperature" : "",
             "airTemperature" : "",
-            "sessionDuration" : 0
+            "sessionDuration" : 0,
+            "sessionType" : ""
         }
         self.tyresID = {                       # mapping tyreID to image name
             16 : "soft", 
@@ -36,6 +37,21 @@ class Listener(Thread):
             "wi-day-showers", 
             "wi-day-rain", 
             "wi-day-snow-thunderstorm"
+        ]
+        self.SessType = [
+            "",
+            "Practice #1",
+            "Practice #2",
+            "Practice #3",
+            "Practice - Short",
+            "Qualification #1",
+            "Qualification #2",
+            "Qualification #3",
+            "Qualification - Short",
+            "Qualification - 1 Lap",
+            "Race",
+            "Race",
+            "Time Trial"
         ]
         
         # update the dictionnary of <ID: name> to add missing ones
@@ -69,6 +85,7 @@ class Listener(Thread):
                 self.race_info["trackTemperature"] = packet.trackTemperature
                 self.race_info["airTemperature"] = packet.airTemperature
                 self.race_info["sessionDuration"] = packet.sessionDuration - packet.sessionTimeLeft
+                self.race_info["sessionType"] = self.SessType[packet.sessionType]
                 if self.totalLaps != packet.totalLaps:
                     # reset pilots when the number of lap changes (usually due to map change)
                     self.totalLaps = packet.totalLaps
@@ -76,13 +93,15 @@ class Listener(Thread):
             if isinstance(packet, PacketLapData_V1):
                 for i, lap in enumerate(packet.lapData):
                     self.status[i].lap = lap.currentLapNum
-                    self.status[i].position = lap.carPosition
+                    self.status[i].position = lap.carPosition  # starts at 0
                     self.status[i].fastest_lap = lap.bestLapTime
                     self.status[i].status = lap.resultStatus
+                    if self.race_info["sessionType"] == "Race":
+                        self.status[i].gridPosition = lap.gridPosition + 1 # starts at 1
+                    else:
+                        self.status[i].gridPosition = -1
             if isinstance(packet, PacketParticipantsData_V1):
                 for i, participant in enumerate(packet.participants):
-                    if participant.driverId not in self.DriverIDs:
-                        print(participant.driverId)
                     self.status[i].name = self.DriverIDs[participant.driverId]
                     self.status[i].team = TeamIDs[participant.teamId]
                     self.status[i].is_bot = bool(participant.aiControlled)

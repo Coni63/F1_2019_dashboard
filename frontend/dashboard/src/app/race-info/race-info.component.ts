@@ -3,8 +3,6 @@ import { environment } from '../../environments/environment';
 
 import { interval, Subscription } from 'rxjs';
 
-import { TimeFormatPipe } from '../pipes.pipe';
-
 import * as io from 'socket.io-client';
 
 @Component({

@@ -35,13 +35,16 @@ def send_status():
         "status" : 2,
         "is_fastest" : true,
         "is_bot" : true,
-        "wear" : 3.25
+        "wear" : 3.25,
+        "gridPosition" : 2
     }
     """
     if udp_listener.status is None:
         emit('status', [])
     else:
         sorted_pilot = sorted(udp_listener.status, key=lambda x:x.position)
+        # for idx, pilot in enumerate(sorted_pilot):  # just to check tyre color
+        #     pilot.wear = 5*idx
         data = [pilot.to_json() for pilot in sorted_pilot]
         emit('status', data)
 
@@ -56,7 +59,8 @@ def send_track():
         "weather" : "wi-day-sunny",
         "trackTemperature" : "29",
         "airTemperature" : "21",
-        "sessionDuration" : 127
+        "sessionDuration" : 127,
+        "sessionType" : 10
     }
     """
     emit('track', udp_listener.race_info)

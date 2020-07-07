@@ -5,6 +5,10 @@ This repository is offering a capability to see the current position of each pil
 
 ![preview](https://github.com/Coni63/F1_2019_dashboard/blob/master/preview.png)
 
+## New Version
+
+A new version is available fo F1 2020 on [this repo](https://github.com/Coni63/F1_2020_dashboard)
+
 ## How to use
 
 ### Install Python 3.5+
@@ -114,15 +118,6 @@ You can look at options in [the documentation](https://f1-2019-telemetry.readthe
 The objective of this library is to listen on 1 Thread the UDP packets from the game and parse them using the library (f1-2019-telemetry). In parallel a second Thread is running a Flaks server to serve the UI as static files and provide socket to update the UI on regular basis.
 
 ![architecture](https://github.com/Coni63/F1_2019_dashboard/blob/master/architecture.png)
-
-## Futurs Updates
-
-This work is at early stage, there is still pending bugs and ideas for improvements such as:
- 
-- Adding sign if the pilot improved the position during the race (`^`, `-` or `v`)
-- Improve/Fix layout for Mobile/Tablet
-- Display only if Qualification or Race
-- Prepare updates for F1-2020
 
 ## Acknowledgments
 

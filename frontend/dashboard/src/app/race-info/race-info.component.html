@@ -19,7 +19,10 @@
         <div class="col">
             <img class="icon-lg" *ngIf="status.weather != ''" src="assets/race-assets/{{status.weather}}.svg"/>
         </div>
-        <div class="col-6">
+        <div class="col-6 text-center">
+            <h2>
+                {{ status.sessionType }}
+            </h2>
         </div>
         <div class="col temperature text-right">
             <blockquote class="blockquote">
