@@ -24,7 +24,7 @@
     "bootstrap-icons": "^1.0.0-alpha4",
     "jquery": "^3.5.1",
     "rxjs": "~6.4.0",
-    "socket.io-client": "^2.3.0",
+    "socket.io-client": "^2.5.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
